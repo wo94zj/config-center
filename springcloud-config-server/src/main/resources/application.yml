@@ -1,0 +1,25 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: springcloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://xxxx/xxx.git # 配置git仓库的地址
+          search-paths: xx # git仓库地址下的相对地址，可以配置多个，用,分割。
+          username: xx
+          password: xx
+
+eureka:
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1110/eureka/
+
+
+#设置spring.profiles.active=native，config server会默认从src/main/resource目录下检索配置文件；
+#也可以通过spring.cloud.config.server.native.searchLocations=file:E:/properties/指定配置文件位置
